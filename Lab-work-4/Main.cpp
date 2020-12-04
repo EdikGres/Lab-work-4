@@ -1,40 +1,53 @@
+#define  _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Functions.h"
+#include "MyLibForLab.h"
 
-const int MAX_MASS_SIZE = 256;
-using namespace func;
+//const int MAX_MASS_SIZE = 256;
+/*
+	создать MAP для чисел в строке.
+	ключ - само число. value - количество чисел
+	(ключ уникален)
+
+*/
+
+using namespace mylab;
 int main() {
 
-	char* str = (char*)malloc(sizeof(char) * MAX_MASS_SIZE);
-	printf("input text:");
-	fgets(str, MAX_MASS_SIZE, stdin);
+	char* text;
+	int text_len = 0;
+	printf("Input text: ");
+	text = get_string(&text_len);
 
-	int* nums = getNumbers(str);
+	int numbers_len = 0;
 	
-	printf("\nAll numbers from text: \n");
+	printf("All number from text:\n");
+	
+	int* numbers = getNumbers(text, &numbers_len);
 	int i = 0;
-	while (i < nums[0])
+	while (i < numbers_len)
 	{
-		printf("%d ", nums[++i]);
-
+		printf("%d ", numbers[i]);
+		i++;
 	}
-	
-	printf("\nUnique numbers (SET): \n");
 
-	int* unique = uniqueNumbers(nums, nums[0]);
+	int set_len = 0;
+	int* set_numbers = uniqueNumbers(numbers, numbers_len, &set_len);
+
+	printf("\nSET numbers:\n");
 	i = 0;
-	while (i < unique[0])
+	while (i < set_len)
 	{
-		printf("%d ", unique[++i]);
+		printf("%d ", set_numbers[i]);
+		i++;
 	}
-	
-
-
-
+	free(text);
+	free(numbers);
+	free(set_numbers);
 	return 0;
 }
+
 
 
 
