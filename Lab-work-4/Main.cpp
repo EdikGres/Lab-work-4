@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "MyLibForLab.h"
+#include "MyMap.h"
 
 //const int MAX_MASS_SIZE = 256;
 /*
@@ -35,13 +36,36 @@ int main() {
 	int set_len = 0;
 	int* set_numbers = uniqueNumbers(numbers, numbers_len, &set_len);
 
-	printf("\nSET numbers:\n");
+	printf("\n\nSET numbers:\n");
 	i = 0;
 	while (i < set_len)
 	{
 		printf("%d ", set_numbers[i]);
 		i++;
 	}
+
+	using namespace mymap;
+	int ll = 5;
+	map* maps = get_mass(&set_len);
+
+	fill_map(maps, set_numbers, &set_len);
+	
+	for (int i = 0; i < set_len; i++)
+	{
+		for (int j = 0; j < numbers_len; j++)
+		{
+			if (maps[i].number == numbers[j])
+				maps[i].counter++;
+		}
+	}
+
+	printf("\n\nMAP: ");
+	for (int i = 0; i < set_len; i++)
+	{
+		printf("\n[%d]: %d --> %d (quantity)", i, maps[i].number, maps[i].counter);
+	}
+
+
 	free(text);
 	free(numbers);
 	free(set_numbers);

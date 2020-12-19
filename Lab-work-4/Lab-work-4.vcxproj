@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MyLybForLab.cpp" />
+    <ClCompile Include="MyLibForLab.cpp" />
+    <ClCompile Include="MyMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyLibForLab.h" />
+    <ClInclude Include="MyMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
